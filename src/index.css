@@ -1,0 +1,12 @@
+html{
+  height: 100%;
+  background:linear-gradient(
+    rgb(75, 75, 75)50%,
+    rgb(17, 17, 17)100%
+  );
+}
+body{
+  margin: 0;
+  padding: 0;
+  font-family:Helvetica;
+}
