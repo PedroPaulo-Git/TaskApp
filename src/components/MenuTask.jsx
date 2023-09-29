@@ -1,15 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from '../styles/menu.module.css';
 import { BsBookmarkCheck } from 'react-icons/bs';
+import { GoTasklist } from 'react-icons/go'
+import { LuCalendarClock } from 'react-icons/lu';
+import { AiOutlineUser } from 'react-icons/ai'
+
 function MenuTask() {
     return ( 
         <div>
             <div className={styles.menuContainer}>
                 <span> <BsBookmarkCheck /></span>
+                <div className={styles.menuContainer_mid}>
+                <span> <LuCalendarClock /></span>
+                <Link to={'/tasks'}><span> <GoTasklist /></span></Link>
                 <span> <BsBookmarkCheck /></span>
-                <span> <BsBookmarkCheck /></span>
-                <span> <BsBookmarkCheck /></span>
-                <span> <BsBookmarkCheck /></span>
+                </div>
+                <span style={{borderBottom:"none",bottom:0}}> <AiOutlineUser /></span>
             </div>
         </div>
      );

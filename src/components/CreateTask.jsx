@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill } from 'react-icons/bs';
 import MenuTask from './MenuTask';
+import ShowTask from './ShowTask';
 import styles from '../styles/createtask.module.css'
 
 const API = "http://localhost:5000"
@@ -61,45 +62,16 @@ function CreateTask() {
 
     };
 
-    const handleDelete = async (id) => {
-
-        await fetch(API + "/todos/" + id, {
-            method: "DELETE",
-        });
-        setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
-        alert("Tarefa excluída com sucesso!");
-    };
-
-    const handleEdit = async (todo) => {
-
-        todo.done = !todo.done;
-
-        const data = await fetch(API + "/todos/" + todo.id, {
-            method: "PUT",
-            body: JSON.stringify(todo),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        setTodos((prevState) => prevState.map((t) =>
-            (t.id === (data.id) ? (t = data) : t)));
-
-
-    };
-
+    
+    
     if (loading) {
         return <p>Carregando...</p>;
     }
 
-
-
-
-
-
-
     return (
         <main className={styles.mainContainer}>
             <MenuTask />
+           
             <div className={styles.createTask_Container}>
                 <div className={styles.createTask_Container_top}>
                     <h1>Create Task</h1>

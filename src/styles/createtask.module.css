@@ -1,11 +1,12 @@
 .mainContainer{
     display: flex;
-    box-shadow: 1px 3px 5px rgb(151, 151, 151);
+    box-shadow: 1px 3px 10px rgb(151, 151, 151);
     width: 80%;
-    height: 80%;
+    height: 90%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    background-color: #FFFF;
     position: absolute;
 }
 .createTask_Container_top{
@@ -36,7 +37,7 @@
   outline: none;
    }
 .forms_Control{
-    margin-top: 5%;
+    margin-top: 2%;
     
 }
 .button{
