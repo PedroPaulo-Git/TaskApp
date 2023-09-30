@@ -65,7 +65,7 @@ function CreateTask() {
     
     
     if (loading) {
-        return <p>Carregando...</p>;
+        return ;
     }
 
     return (

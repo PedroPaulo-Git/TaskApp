@@ -1,0 +1,52 @@
+.mainContainer{
+    display: flex;
+    box-shadow: 1px 3px 10px rgb(151, 151, 151);
+    width: 80%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #FFFF;
+    position: absolute;
+}
+.createTask_Container_top{
+    display: block;
+}
+.createTask_Container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2%;
+    margin-left: 5%;
+    position: relative;  
+}
+.createTask_Container_forms{
+    width: 100%;
+    
+
+}
+.forms_Input{
+    margin-top: 1%;
+    padding-inline: 2%;
+    width: 60%;
+    padding-block: 1.5%;
+    border: none;
+    box-shadow: 1px 2px 5px rgb(121, 121, 121);
+   }
+   .forms_Input:focus{
+  outline: none;
+   }
+.forms_Control{
+    margin-top: 2%;
+    
+}
+.button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 1.5% 4% 1.5%;
+    margin: 2%;
+    border: none;
+    background-color: aqua;
+    box-shadow: 2px 2px 5px rgb(61, 61, 61);
+}

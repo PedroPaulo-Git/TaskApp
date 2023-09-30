@@ -10,29 +10,46 @@
     background-color: #FFFF;
     position: absolute;
 }
+.todo_main{
+    display: flex;
+    height: 100%;
+}
 .createTask_Container_top{
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .createTask_Container{
+    flex-direction: column;
     position: relative;
     margin: 2%;
     margin-left: 5%;
     width: 100%;
     display: flex;
-    flex-direction: column;
     height: 400px;
 }
 .todoContainer_main{
     height: 100%;
     width: 200px;
+    margin-right: 5%;
     position: relative;
     
+}
+.todoContainer_top{
+    position: relative;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+.todoContainer_top svg{
+    padding-left: 5px;
 }
 .todoContainer{
   height: 100%;
   overflow-y: auto;
   width: 100%;
-  padding-right: 2%;
+  padding-right: 10%;
  
 }
 .todoContainer h2 {
@@ -42,7 +59,12 @@
 
 .todoContainer::-webkit-scrollbar{
     background-color: white;
-    width: 6px;
+    width: 4px;
+    
+    
+}
+.todoContainer::-webkit-scrollbar-track{
+ 
 }
 .todoContainer::-webkit-scrollbar-thumb{
     background-color: rgb(172, 172, 172);
@@ -59,4 +81,12 @@
 }
 .todo h3 {
     font-size: 15px;
+}
+.button{
+    padding-inline: 10px;
+    height: 30px;
+    margin: 2%;
+    border: none;
+    background-color: aqua;
+    box-shadow: 2px 2px 5px rgb(153, 153, 153);
 }

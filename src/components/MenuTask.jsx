@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from '../styles/menu.module.css';
 import { BsBookmarkCheck } from 'react-icons/bs';
+import { IoCreateOutline } from 'react-icons/io5'
 import { GoTasklist } from 'react-icons/go'
 import { LuCalendarClock } from 'react-icons/lu';
 import { AiOutlineUser } from 'react-icons/ai'
@@ -12,9 +13,9 @@ function MenuTask() {
             <div className={styles.menuContainer}>
                 <span> <BsBookmarkCheck /></span>
                 <div className={styles.menuContainer_mid}>
-                <span> <LuCalendarClock /></span>
+                <Link to={'/calendar'}><span> <LuCalendarClock /></span></Link>
                 <Link to={'/tasks'}><span> <GoTasklist /></span></Link>
-                <span> <BsBookmarkCheck /></span>
+                <Link to={'/'}> <span> <IoCreateOutline /></span></Link>
                 </div>
                 <span style={{borderBottom:"none",bottom:0}}> <AiOutlineUser /></span>
             </div>
