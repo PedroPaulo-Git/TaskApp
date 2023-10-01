@@ -5,7 +5,7 @@
     flex-direction: column;
     position: relative;
     left:0;
-    font-size: 20px;
+    font-size: 22px;
     height: 100%;
     align-items: center;
     width: 70px;
@@ -22,7 +22,7 @@
 }
 .menuContainer_mid a{
     color: black;
-    padding-block: 50%;
+    padding-block:70%;
     border-bottom: 1px solid rgb(56, 56, 56);
     
 

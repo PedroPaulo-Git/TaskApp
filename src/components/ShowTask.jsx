@@ -1,8 +1,10 @@
 import MenuTask from './MenuTask';
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import styles from '../styles/showtask.module.css'
 import { BsSliders2Vertical, BsTrash, BsBookmarkCheck, BsBookmarkCheckFill, BsCheck2Circle, BsDashCircle, BsClockHistory, BsSlashCircle } from 'react-icons/bs';
 import { PiDotsSixBold } from 'react-icons/pi'
+import { GiCheckMark } from 'react-icons/gi'
 
 function ShowTask() {
     const API = "http://localhost:5000"
@@ -63,14 +65,14 @@ function ShowTask() {
             <MenuTask />
             <div className={styles.createTask_Container}>
                 <div className={styles.createTask_Container_top}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '47.3%' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '50%' }}>
                         <h1>Tasks</h1>
-                        <div style={{}}>
-                        <BsSliders2Vertical style={{ marginLeft: "10px" }} />
-                        <PiDotsSixBold style={{ marginLeft: "10px" }}/>
+                        <div style={{ marginRight: "13px" }}>
+                            <BsSliders2Vertical style={{}} />
+                            <PiDotsSixBold style={{ marginLeft: "10px" }} />
                         </div>
                     </div>
-                    <input className={styles.button} type="submit" value="Nova Tarefa" />
+                    <Link to={'/'}><input className={styles.button} type="submit" value="Nova Tarefa" /></Link>
                 </div>
 
                 <div className={styles.todo_main}>
@@ -87,26 +89,35 @@ function ShowTask() {
                             {todos.length === 0 && <p>Não há tarefas</p>}
 
                             {todos.map((todo) => (
-
-                                <div className={styles.todo} key={todo.id}>
-
-                                    <h3 className={todo.done ? "todo-dobe" : ""}>{todo.title}</h3>
+                                <div>
+                                {todo.done === false ? 
+                                    <div>
+                                    <div className={styles.todo} key={todo.id}>
+                                    {console.log(todo.id)}
+                                    <h3>{todo.title}</h3>
                                     <p className={styles.pDuracao}>Duração:{todo.time}{todo.time <= 1 ? "hr" : "hrs"}</p>
                                     <span onClick={() => handleEdit(todo)}>
-                                        {!todo.done ? <BsBookmarkCheck /> : <BsBookmarkCheckFill />}
+                                        {!todo.done ? ( <GiCheckMark style={{}} /> )
+                                        : 
+                                       todo.time = "null" }
                                     </span>
                                     <BsTrash onClick={() =>
                                         handleDelete(todo.id)
 
                                     } />
                                 </div>
+                                </div> 
+                                : null}
+
+                                </div>
                             ))}
+
                         </div>
                     </div>
 
 
                     <div className={styles.todoContainer_main}>
-                    <div className={styles.todoContainer_top}>
+                        <div className={styles.todoContainer_top}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <h2 style={{ fontSize: '18px' }}>Feito</h2>
                                 <BsCheck2Circle style={{ color: "green" }} />
@@ -115,23 +126,31 @@ function ShowTask() {
                         </div>
                         <div className={styles.todoContainer}>
 
-                            {todos.length === 0 && <p>Não há tarefas</p>}
+                            {console.log(todos)}
 
-                            {todos.map((todo) => (
+                            {
+                                todos.some((todo) => todo.done === true) ? (
+                                    <div>
+                                        {todos.map((todo) => (
+                                            <div key={todo.id}>
+                                                {todo.done === true ? (
+                                                    <div className={styles.todo}>
+                                                        <h3 className={todo.done ? "todo-done" : ""}>{todo.title}</h3>
+                                                        <p className={styles.pDuracao}>Duração: {todo.time} {todo.time <= 1 ? "hr" : "hrs"}</p>
+                                                        {!todo.done ? <BsBookmarkCheckFill /> : ''}
+                                                    </div>
+                                                ) : null}
+                                               
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>Não há tarefas concluídas</p>
+                                )
+                            }
 
-                                <div className={styles.todo} key={todo.id}>
 
-                                    <h3 className={todo.done ? "todo-dobe" : ""}>{todo.title}</h3>
-                                    <p className={styles.pDuracao}>Duração:{todo.time}{todo.time <= 1 ? "hr" : "hrs"}</p>
-                                    <span onClick={() => handleEdit(todo)}>
-                                        {!todo.done ? <BsBookmarkCheck /> : <BsBookmarkCheckFill />}
-                                    </span>
-                                    <BsTrash onClick={() =>
-                                        handleDelete(todo.id)
 
-                                    } />
-                                </div>
-                            ))}
                         </div>
                     </div>
 

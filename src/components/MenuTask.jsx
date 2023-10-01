@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from '../styles/menu.module.css';
 import { BsBookmarkCheck } from 'react-icons/bs';
+import { VscInbox } from 'react-icons/vsc'
 import { IoCreateOutline } from 'react-icons/io5'
 import { GoTasklist } from 'react-icons/go'
 import { LuCalendarClock } from 'react-icons/lu';
@@ -11,7 +12,7 @@ function MenuTask() {
     return ( 
         <div>
             <div className={styles.menuContainer}>
-                <span> <BsBookmarkCheck /></span>
+                <span> <VscInbox /></span>
                 <div className={styles.menuContainer_mid}>
                 <Link to={'/calendar'}><span> <LuCalendarClock /></span></Link>
                 <Link to={'/tasks'}><span> <GoTasklist /></span></Link>
