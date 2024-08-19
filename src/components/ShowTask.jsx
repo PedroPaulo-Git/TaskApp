@@ -96,15 +96,19 @@ function ShowTask() {
                                     {console.log(todo.id)}
                                     <h3>{todo.title}</h3>
                                     <p className={styles.pDuracao}>Duração:{todo.time}{todo.time <= 1 ? "hr" : "hrs"}</p>
-                                    <span onClick={() => handleEdit(todo)}>
+
+                                    <span className={styles.svg_time} onClick={() => handleEdit(todo)}>
                                         {!todo.done ? ( <GiCheckMark style={{}} /> )
                                         : 
                                        todo.time = "null" }
                                     </span>
+
+                                    <span  className={styles.svg_delete}>
                                     <BsTrash onClick={() =>
                                         handleDelete(todo.id)
 
                                     } />
+                                    </span>
                                 </div>
                                 </div> 
                                 : null}

@@ -85,6 +85,16 @@
     padding-block: 8%;
     padding-inline: 2%;
 }
+.todo svg{
+    padding: 10px 10px 0;
+    cursor: pointer;
+}
+.svg_time svg:hover{
+    color: greenyellow;
+}
+.svg_delete svg:hover{
+    color: rgb(255, 72, 0);
+}
 .todo p {
     color: rgb(37, 37, 37);
     font-size: 13px;

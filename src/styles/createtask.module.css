@@ -9,6 +9,38 @@
     background-color: #FFFF;
     position: absolute;
 }
+.createTask_Create_Notification_container{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(151, 151, 151) 5px 5px 10px;
+    top: 0%;
+    left: 50%;
+    border-radius: 0.5em;
+}
+.createTask_Create_Notification{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    height: 60px;
+  
+}
+.createTask_Create_Notification svg{
+   border: 1px solid rgb(30, 255, 0);
+   border-radius: 50%;
+   padding: 4px;
+   margin-left: 10px;
+   color:  rgb(30, 255, 0);
+}
+.createTask_Create_Notification span{
+    height: 70%;
+    align-items: center;
+    display: flex;
+    border-left: 1px solid rgb(158, 158, 158);
+    padding-inline: 16px;
+    cursor: pointer;
+ }
 .createTask_Container_top{
     display: block;
 }

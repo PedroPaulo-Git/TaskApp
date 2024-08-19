@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill } from 'react-icons/bs';
+import { MdDone } from "react-icons/md";
 import MenuTask from './MenuTask';
 import ShowTask from './ShowTask';
 import styles from '../styles/createtask.module.css'
@@ -12,6 +13,7 @@ function CreateTask() {
     const [time, setTime] = useState("");
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [taskDone,setTaskDone] = useState(false)
 
 
     useEffect(() => {
@@ -37,6 +39,10 @@ function CreateTask() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setTaskDone(true) 
+        const timer = setTimeout(() => {
+            setTaskDone(false) 
+        }, 2000);
         const todo = {
             id: Math.random(),
             title,
@@ -71,7 +77,7 @@ function CreateTask() {
     return (
         <main className={styles.mainContainer}>
             <MenuTask />
-           
+            <div className={styles.createTask_Create_Notification_container}>{taskDone ?? false ?<div className={styles.createTask_Create_Notification}><MdDone /><p>Sua tarefa foi criada com sucesso !</p> <span onClick={()=>{setTaskDone(false)}}> OK </span></div>  :"" }</div>
             <div className={styles.createTask_Container}>
                 <div className={styles.createTask_Container_top}>
                     <h1>Create Task</h1>
@@ -104,7 +110,7 @@ function CreateTask() {
                                 required
                             />
                         </div>
-                        <input className={styles.button} type="submit" value="Criar tarefa" />
+                        <input onClick={()=>{}} className={styles.button} type="submit" value="Criar tarefa" />
                     </form>
                 </div>
             </div>
