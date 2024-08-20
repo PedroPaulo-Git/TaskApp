@@ -7,7 +7,7 @@ import AllTasks from '../components/AllTasks';
 function AppRouter() {
     return ( 
         <div>  
-        <Router>
+        <Router basename='/TaskApp/'>
         <Routes>
           <Route path='/' element={<CreateTask/>}/>
           <Route path='/tasks' element={<ShowTask/>}/>
