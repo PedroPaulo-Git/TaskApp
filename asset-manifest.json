@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/PedroPaulo-Git/TaskApp/static/css/main.8397700e.css",
-    "main.js": "/PedroPaulo-Git/TaskApp/static/js/main.3e2b4f35.js",
+    "main.js": "/PedroPaulo-Git/TaskApp/static/js/main.b47bf837.js",
     "static/js/787.63e47474.chunk.js": "/PedroPaulo-Git/TaskApp/static/js/787.63e47474.chunk.js",
     "index.html": "/PedroPaulo-Git/TaskApp/index.html",
     "main.8397700e.css.map": "/PedroPaulo-Git/TaskApp/static/css/main.8397700e.css.map",
-    "main.3e2b4f35.js.map": "/PedroPaulo-Git/TaskApp/static/js/main.3e2b4f35.js.map",
+    "main.b47bf837.js.map": "/PedroPaulo-Git/TaskApp/static/js/main.b47bf837.js.map",
     "787.63e47474.chunk.js.map": "/PedroPaulo-Git/TaskApp/static/js/787.63e47474.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8397700e.css",
-    "static/js/main.3e2b4f35.js"
+    "static/js/main.b47bf837.js"
   ]
 }
