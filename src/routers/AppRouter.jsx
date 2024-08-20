@@ -9,7 +9,7 @@ function AppRouter() {
         <div>  
         <Router>
         <Routes>
-          <Route path='/' element={<CreateTask/>}/>
+          <Route path='/Tasks/' element={<CreateTask/>}/>
           <Route path='/tasks' element={<ShowTask/>}/>
           <Route path='/calendar' element={<CalendarTask/>}/>
         </Routes>

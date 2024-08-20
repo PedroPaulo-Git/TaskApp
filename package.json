@@ -1,6 +1,7 @@
 {
   "name": "todo",
   "version": "0.1.0",
+  "homepage": "https://github.com/PedroPaulo-Git/TaskApp",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -21,7 +22,7 @@
     "eject": "react-scripts eject",
     "server": "json-server --watch data/db.json --port 5000 ",
     "predeploy": "npm run build",
-    "deploy": "npm run gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +43,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.0.0"
+    "gh-pages": "^6.1.1"
   }
 }
