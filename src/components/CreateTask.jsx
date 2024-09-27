@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill } from 'react-icons/bs';
+import { useTasks } from './context/ContextTasks';
 import { MdDone } from "react-icons/md";
 import MenuTask from './MenuTask';
 import ShowTask from './ShowTask';
@@ -9,13 +10,13 @@ import styles from '../styles/createtask.module.css'
 const API = "http://localhost:5000"
 
 function CreateTask() {
+    const { addTodo } = useTasks(); 
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
-    const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [taskDone,setTaskDone] = useState(false)
 
-
+  
     useEffect(() => {
 
         const loadData = async () => {
@@ -28,9 +29,6 @@ function CreateTask() {
                 .catch((err) => console.log(err));
 
             setLoading(false);
-            setTodos(res);
-
-
         };
         loadData();
     }, [])
@@ -44,36 +42,40 @@ function CreateTask() {
             setTaskDone(false) 
         }, 2000);
         const todo = {
-            id: Math.random(),
             title,
-            time,
+            time: parseInt(time), // Certifique-se de que o tempo seja um número
             done: false,
-
+        };
+        try {
+            const response = await fetch(API + "/todos", {
+                method: "POST",
+                body: JSON.stringify(todo),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+    
+            if (!response.ok) {
+                throw new Error("Erro ao criar a tarefa");
+            }
+    
+            const newTodo = await response.json(); // Obtenha a nova tarefa criada do backend
+    
+            addTodo(newTodo); // Adicionar a nova tarefa ao contexto
+    
+            setTitle("");
+            setTime("");
+    
+            console.log(newTodo);
+        } catch (error) {
+            console.error(error);
+            setTaskDone(false); // Você pode tratar erros de maneira mais elaborada
         }
-        await fetch(API + "/todos", {
-            method: "POST",
-            body: JSON.stringify(todo),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        setTodos((prevState) => [...prevState, todo]);
-
-
-
-        console.log(todo)
-        setTime("");
-        setTitle("");
-
     };
 
-    
-    
     if (loading) {
-        return ;
+        return <p>Loading...</p>; // Você pode adicionar um loader aqui
     }
-
     return (
         <main className={styles.mainContainer}>
             <MenuTask />

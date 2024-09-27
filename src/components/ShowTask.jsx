@@ -1,66 +1,45 @@
 import MenuTask from './MenuTask';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react'
-import styles from '../styles/showtask.module.css'
-import { BsSliders2Vertical, BsTrash, BsBookmarkCheck, BsBookmarkCheckFill, BsCheck2Circle, BsDashCircle, BsClockHistory, BsSlashCircle } from 'react-icons/bs';
-import { PiDotsSixBold } from 'react-icons/pi'
-import { GiCheckMark } from 'react-icons/gi'
+import { useEffect } from 'react';
+import styles from '../styles/showtask.module.css';
+import { useTasks } from '../components/context/ContextTasks';
+import { BsSliders2Vertical, BsTrash, BsCheck2Circle,BsBookmarkCheckFill, BsSlashCircle } from 'react-icons/bs';
+import { PiDotsSixBold } from 'react-icons/pi';
+import { GiCheckMark } from 'react-icons/gi';
 
 function ShowTask() {
-    const API = 'http://localhost:3000';
+    const API = "http://localhost:3000";
 
-    const [title, setTitle] = useState("");
-    const [time, setTime] = useState("");
-    const [todos, setTodos] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const { todos, loadTodos, editTodo, deleteTodo } = useTasks();
 
-    // useEffect(() => {
+    useEffect(() => {
+        loadTodos(); 
+        console.log( todos )
+    }, [loadTodos]);
 
-    //     const loadData = async () => {
+    const handleEdit = async (todo) => {
+        todo.done = !todo.done;
 
-    //         setLoading(true);
+        await fetch(`${API}/todos/${todo.id}`, {
+            method: "PUT",
+            body: JSON.stringify(todo),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
-    //         const res = await fetch(API + "/todos")
-    //             .then((res) => res.json())
-    //             .then((data) => data)
-    //             .catch((err) => console.log(err));
+        editTodo(todo); // Use editTodo from context
+    };
 
-    //         setLoading(false);
-    //         setTodos(res);
-
-
-    //     };
-    //     loadData();
-    // }, [])
-
-    // const handleEdit = async (todo) => {
-
-    //     todo.done = !todo.done;
-
-    //     const data = await fetch(API + "/todos/" + todo.id, {
-    //         method: "PUT",
-    //         body: JSON.stringify(todo),
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //     });
-    //     setTodos((prevState) => prevState.map((t) =>
-    //         (t.id === (data.id) ? (t = data) : t)));
-
-
-    // };
-    // const handleDelete = async (id) => {
-
-    //     await fetch(API + "/todos/" + id, {
-    //         method: "DELETE",
-    //     });
-    //     setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
-    //     alert("Tarefa excluída com sucesso!");
-    // };
-
+    const handleDelete = async (id) => {
+        await fetch(`${API}/todos/${id}`, {
+            method: "DELETE",
+        });
+        deleteTodo(id); // Use deleteTodo from context
+        alert("Tarefa excluída com sucesso!");
+    };
 
     return (
-
         <main className={styles.mainContainer}>
             <MenuTask />
             <div className={styles.createTask_Container}>
@@ -68,7 +47,7 @@ function ShowTask() {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '50%' }}>
                         <h1>Tasks</h1>
                         <div style={{ marginRight: "13px" }}>
-                            <BsSliders2Vertical style={{}} />
+                            <BsSliders2Vertical />
                             <PiDotsSixBold style={{ marginLeft: "10px" }} />
                         </div>
                     </div>
@@ -84,11 +63,9 @@ function ShowTask() {
                             </div>
                             <PiDotsSixBold style={{ left: '0', position: 'relative' }} />
                         </div>
-                        <div className={styles.todoContainer}>
-
-                            {todos.length === 0 && <p>Não há tarefas</p>}
-
-                            {todos.map((todo) => (
+                        <div>
+                        {todos.length === 0 && <p>Não há tarefas</p>}
+                        {todos.map((todo) => (
                                 <div>
                                 {todo.done === false ? 
                                     <div>
@@ -115,11 +92,10 @@ function ShowTask() {
 
                                 </div>
                             ))}
-
                         </div>
                     </div>
 
-
+                    {/* Completed Tasks Section */}
                     <div className={styles.todoContainer_main}>
                         <div className={styles.todoContainer_top}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -129,10 +105,7 @@ function ShowTask() {
                             <PiDotsSixBold style={{ left: '0', position: 'relative' }} />
                         </div>
                         <div className={styles.todoContainer}>
-
-                            {console.log(todos)}
-
-                            {
+                        {
                                 todos.some((todo) => todo.done === true) ? (
                                     <div>
                                         {todos.map((todo) => (
@@ -152,17 +125,10 @@ function ShowTask() {
                                     <p>Não há tarefas concluídas</p>
                                 )
                             }
-
-
-
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
-
         </main>
     );
 }

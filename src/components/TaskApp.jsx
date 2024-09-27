@@ -7,7 +7,7 @@ import ShowTask from "./ShowTask";
 function AllTasks() {
     return ( 
         <div>
-            <CreateTask/> 
+            <h1>2222</h1>
         </div>
      );
 }

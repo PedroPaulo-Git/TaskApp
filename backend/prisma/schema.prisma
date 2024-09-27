@@ -1,0 +1,14 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Certifique-se de que a variável de ambiente esteja configurada corretamente
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+model todos {
+  id    Int     @id @default(autoincrement())
+  title String
+  time  Int
+  done  Boolean @default(false)
+}
