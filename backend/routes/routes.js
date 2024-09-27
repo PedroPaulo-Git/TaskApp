@@ -72,7 +72,7 @@ router.delete('/todos/:id', async (req, res) => {
         });
         res.json({ message: 'Tarefa excluída com sucesso' });
     } catch (error) {
-        console.error(error);
+        console.error('Erro ao excluir a tarefa:', error);
         res.status(404).json({ message: 'Tarefa não encontrada' });
     }
 });

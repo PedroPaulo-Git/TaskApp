@@ -10,7 +10,7 @@ export const TaskProvider = ({ children }) => {
 
   const loadTodos = async () => {
     // Carregar tarefas (simulação)
-    const response = await fetch('http://localhost:3000/todos');
+    const response = await fetch('http://localhost:5000/todos');
     const data = await response.json();
     setTodos(data);
   };

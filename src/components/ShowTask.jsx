@@ -8,14 +8,18 @@ import { PiDotsSixBold } from 'react-icons/pi';
 import { GiCheckMark } from 'react-icons/gi';
 
 function ShowTask() {
-    const API = "http://localhost:3000";
+    const API = "http://localhost:5000";
 
     const { todos, loadTodos, editTodo, deleteTodo } = useTasks();
-
     useEffect(() => {
-        loadTodos(); 
-        console.log( todos )
+        const fetchData = async () => {
+            await loadTodos(); // Chama a função que carrega as tarefas do banco
+            console.log(todos);
+        };
+    
+        fetchData();
     }, [loadTodos]);
+    
 
     const handleEdit = async (todo) => {
         todo.done = !todo.done;
@@ -27,16 +31,25 @@ function ShowTask() {
                 "Content-Type": "application/json",
             },
         });
-
+        await loadTodos(); 
         editTodo(todo); // Use editTodo from context
     };
 
     const handleDelete = async (id) => {
-        await fetch(`${API}/todos/${id}`, {
-            method: "DELETE",
-        });
-        deleteTodo(id); // Use deleteTodo from context
-        alert("Tarefa excluída com sucesso!");
+        try {
+            const response = await fetch(`${API}/todos/${id}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error("Erro ao excluir a tarefa");
+            }
+            await loadTodos(); 
+            deleteTodo(id); 
+            alert("Tarefa excluída com sucesso!");
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao excluir a tarefa.");
+        }
     };
 
     return (
