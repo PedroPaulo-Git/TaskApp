@@ -7,56 +7,56 @@ import { PiDotsSixBold } from 'react-icons/pi'
 import { GiCheckMark } from 'react-icons/gi'
 
 function ShowTask() {
-    const API = "http://localhost:5000"
+    const API = 'http://localhost:3000';
 
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const loadData = async () => {
+    //     const loadData = async () => {
 
-            setLoading(true);
+    //         setLoading(true);
 
-            const res = await fetch(API + "/todos")
-                .then((res) => res.json())
-                .then((data) => data)
-                .catch((err) => console.log(err));
+    //         const res = await fetch(API + "/todos")
+    //             .then((res) => res.json())
+    //             .then((data) => data)
+    //             .catch((err) => console.log(err));
 
-            setLoading(false);
-            setTodos(res);
-
-
-        };
-        loadData();
-    }, [])
-
-    const handleEdit = async (todo) => {
-
-        todo.done = !todo.done;
-
-        const data = await fetch(API + "/todos/" + todo.id, {
-            method: "PUT",
-            body: JSON.stringify(todo),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        setTodos((prevState) => prevState.map((t) =>
-            (t.id === (data.id) ? (t = data) : t)));
+    //         setLoading(false);
+    //         setTodos(res);
 
 
-    };
-    const handleDelete = async (id) => {
+    //     };
+    //     loadData();
+    // }, [])
 
-        await fetch(API + "/todos/" + id, {
-            method: "DELETE",
-        });
-        setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
-        alert("Tarefa excluída com sucesso!");
-    };
+    // const handleEdit = async (todo) => {
+
+    //     todo.done = !todo.done;
+
+    //     const data = await fetch(API + "/todos/" + todo.id, {
+    //         method: "PUT",
+    //         body: JSON.stringify(todo),
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //     });
+    //     setTodos((prevState) => prevState.map((t) =>
+    //         (t.id === (data.id) ? (t = data) : t)));
+
+
+    // };
+    // const handleDelete = async (id) => {
+
+    //     await fetch(API + "/todos/" + id, {
+    //         method: "DELETE",
+    //     });
+    //     setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
+    //     alert("Tarefa excluída com sucesso!");
+    // };
 
 
     return (

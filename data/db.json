@@ -22,25 +22,7 @@
       "id": 0.8502427638281838,
       "title": "Programar",
       "time": "2",
-      "done": false
-    },
-    {
-      "id": 0.11021403637149496,
-      "title": "agendar reunião",
-      "time": "1",
-      "done": false
-    },
-    {
-      "id": 0.0377663138242903,
-      "title": "dsa",
-      "time": "sa",
-      "done": false
-    },
-    {
-      "id": 0.7886286665778828,
-      "title": "sdadd",
-      "time": "2",
-      "done": false
+      "done": true
     }
   ]
 }
