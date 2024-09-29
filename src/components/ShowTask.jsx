@@ -36,6 +36,8 @@ function ShowTask() {
     };
 
     const handleDelete = async (id) => {
+        const confirmed = window.confirm("Você realmente deseja excluir esta tarefa?");
+    if (!confirmed) return; // Se o usuário cancelar, não faz nada
         try {
             const response = await fetch(`${API}/todos/${id}`, {
                 method: "DELETE",
