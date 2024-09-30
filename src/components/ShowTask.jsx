@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 import styles from '../styles/showtask.module.css';
 import { useTasks } from '../components/context/ContextTasks';
-import { BsSliders2Vertical, BsTrash, BsCheck2Circle,BsBookmarkCheckFill, BsSlashCircle } from 'react-icons/bs';
+import { BsSliders2Vertical, BsTrash, BsCheck2Circle, BsBookmarkCheckFill, BsSlashCircle } from 'react-icons/bs';
 import { PiDotsSixBold } from 'react-icons/pi';
 import { GiCheckMark } from 'react-icons/gi';
 
@@ -13,13 +13,13 @@ function ShowTask() {
     const { todos, loadTodos, editTodo, deleteTodo } = useTasks();
     useEffect(() => {
         const fetchData = async () => {
-            await loadTodos(); // Chama a função que carrega as tarefas do banco
+            await loadTodos();
             console.log(todos);
         };
-    
+
         fetchData();
     }, [loadTodos]);
-    
+
 
     const handleEdit = async (todo) => {
         todo.done = !todo.done;
@@ -31,13 +31,13 @@ function ShowTask() {
                 "Content-Type": "application/json",
             },
         });
-        await loadTodos(); 
-        editTodo(todo); // Use editTodo from context
+        await loadTodos();
+        editTodo(todo); 
     };
 
     const handleDelete = async (id) => {
         const confirmed = window.confirm("Você realmente deseja excluir esta tarefa?");
-    if (!confirmed) return; // Se o usuário cancelar, não faz nada
+        if (!confirmed) return; 
         try {
             const response = await fetch(`${API}/todos/${id}`, {
                 method: "DELETE",
@@ -45,8 +45,8 @@ function ShowTask() {
             if (!response.ok) {
                 throw new Error("Erro ao excluir a tarefa");
             }
-            await loadTodos(); 
-            deleteTodo(id); 
+            await loadTodos();
+            deleteTodo(id);
             alert("Tarefa excluída com sucesso!");
         } catch (error) {
             console.error(error);
@@ -79,31 +79,31 @@ function ShowTask() {
                             <PiDotsSixBold style={{ left: '0', position: 'relative' }} />
                         </div>
                         <div>
-                        {todos.length === 0 && <p>Não há tarefas</p>}
-                        {todos.map((todo) => (
+                            {todos.length === 0 && <p>Não há tarefas</p>}
+                            {todos.map((todo) => (
                                 <div>
-                                {todo.done === false ? 
-                                    <div>
-                                    <div className={styles.todo} key={todo.id}>
-                                    {console.log(todo.id)}
-                                    <h3>{todo.title}</h3>
-                                    <p className={styles.pDuracao}>Duração:{todo.time}{todo.time <= 1 ? "hr" : "hrs"}</p>
+                                    {todo.done === false ?
+                                        <div>
+                                            <div className={styles.todo} key={todo.id}>
+                                                {console.log(todo.id)}
+                                                <h3>{todo.title}</h3>
+                                                <p className={styles.pDuracao}>Duração:{todo.time}{todo.time <= 1 ? "hr" : "hrs"}</p>
 
-                                    <span className={styles.svg_time} onClick={() => handleEdit(todo)}>
-                                        {!todo.done ? ( <GiCheckMark style={{}} /> )
-                                        : 
-                                       todo.time = "null" }
-                                    </span>
+                                                <span className={styles.svg_time} onClick={() => handleEdit(todo)}>
+                                                    {!todo.done ? (<GiCheckMark style={{}} />)
+                                                        :
+                                                        todo.time = "null"}
+                                                </span>
 
-                                    <span  className={styles.svg_delete}>
-                                    <BsTrash onClick={() =>
-                                        handleDelete(todo.id)
+                                                <span className={styles.svg_delete}>
+                                                    <BsTrash onClick={() =>
+                                                        handleDelete(todo.id)
 
-                                    } />
-                                    </span>
-                                </div>
-                                </div> 
-                                : null}
+                                                    } />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        : null}
 
                                 </div>
                             ))}
@@ -120,7 +120,7 @@ function ShowTask() {
                             <PiDotsSixBold style={{ left: '0', position: 'relative' }} />
                         </div>
                         <div className={styles.todoContainer}>
-                        {
+                            {
                                 todos.some((todo) => todo.done === true) ? (
                                     <div>
                                         {todos.map((todo) => (
@@ -132,7 +132,7 @@ function ShowTask() {
                                                         {!todo.done ? <BsBookmarkCheckFill /> : ''}
                                                     </div>
                                                 ) : null}
-                                               
+
                                             </div>
                                         ))}
                                     </div>

@@ -22,7 +22,7 @@
 }
 .createTask_Container_forms{
     width: 100%;
-    
+    height: 100%;
 
 }
 .forms_Input{
@@ -41,6 +41,8 @@
     
 }
 .button{
+    cursor: pointer;
+    z-index: 2;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -49,4 +51,10 @@
     border: none;
     background-color: aqua;
     box-shadow: 2px 2px 5px rgb(61, 61, 61);
+}
+
+.calendar{
+    width: 100%;
+    height: 100%;
+    border: none;
 }
