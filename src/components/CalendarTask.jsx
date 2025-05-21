@@ -15,7 +15,7 @@ function CalendarTask() {
                 </div>
                 <div className={styles.createTask_Container_forms}>
                 <Link to={'/'}><input className={styles.button} type="submit" value="Nova Tarefa" /></Link>
-                <iframe  className={styles.calendar} src="https://calendar.google.com/calendar/embed?" ></iframe>
+                <iframe  className={styles.calendar} src="https://calendar.google.com/calendar/embed?" />
                 </div>
             </div>
 
